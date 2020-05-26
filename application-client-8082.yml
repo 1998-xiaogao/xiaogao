@@ -1,0 +1,33 @@
+
+server:
+  port: 8082
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/warehousedb?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 199810
+  application:
+    name: cloud-consumer-order80
+  thymeleaf:
+    cache: false
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+  main:
+    allow-bean-definition-overriding : true
+  #访问的名称
+  profiles:
+    active: 8082
+feign:
+  hystrix:
+    enabled: true
+eureka:
+  client:
+    healthcheck:
+      enabled: false
+    serviceUrl:
+      defaultZone: http://localhost:7001/eureka/
+
+
